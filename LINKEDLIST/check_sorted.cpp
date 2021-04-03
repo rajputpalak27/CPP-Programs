@@ -42,6 +42,26 @@ f=f->next;
 cout<<endl<<"------------------------------------"<<endl;
 }
 
+void check_sorted(Node *f){
+
+int value=-32768,flag=0;  //minimal value taken
+while(f!=NULL){
+if(f->data>value){
+value=f->data;
+f=f->next;
+flag=1;
+}
+else{
+flag=0;
+  cout<<endl<<"LinkedList Not Sorted" <<endl;
+  break;
+ }
+}
+if(flag==1){
+cout<<endl<<"LinkedList Sorted"<<endl;
+}
+
+}
 
 int main(){
 int n;
@@ -49,6 +69,7 @@ cout<<"Enter how many elements you want in the LinkedList :";
 cin>>n;
 
 insert_node(n);
+check_sorted(first);
 display(first);
 return 0;
 }

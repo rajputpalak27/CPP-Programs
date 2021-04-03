@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//PROGRAM CODE TO CREATE AND DISPLAY LINKEDLIST
+//PROGRAM CODE TO REMOVE AND DISPLAY DUPLICATES FROM LINKEDLIST
 
 struct Node{
 int data;
@@ -42,6 +42,22 @@ f=f->next;
 cout<<endl<<"------------------------------------"<<endl;
 }
 
+void delete_duplicate(Node *f){
+struct Node *t=f->next;
+
+while(t!=NULL){
+if(f->data!=t->data){
+f=t;
+t=t->next;
+}
+else{
+  f->next=t->next;
+  delete t ;
+  t=f->next;
+}
+}
+}
+
 
 int main(){
 int n;
@@ -50,5 +66,8 @@ cin>>n;
 
 insert_node(n);
 display(first);
+delete_duplicate(first);
+display(first);
+
 return 0;
 }

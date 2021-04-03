@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//PROGRAM CODE TO CREATE AND DISPLAY LINKEDLIST
+//PROGRAM CODE TO REVERSE AND DISPLAY LINKEDLIST
 
 struct Node{
 int data;
@@ -42,6 +42,28 @@ f=f->next;
 cout<<endl<<"------------------------------------"<<endl;
 }
 
+//USING SLIDING POINTERS
+void reverse(Node *f){
+Node *t1=NULL,*t2=NULL;
+while(f!=NULL){
+t2=t1;
+t1=f;
+f=f->next;
+t1->next=t2;
+}
+first=t1;
+}
+
+//USING RECURSION
+void recursion(Node *t,Node *f){
+if(f){
+    recursion(f,f->next);
+    f->next=t;
+}else{
+    first=t;
+}
+}
+
 
 int main(){
 int n;
@@ -50,5 +72,13 @@ cin>>n;
 
 insert_node(n);
 display(first);
+
+reverse(first);
+display(first);
+
+recursion(NULL,first);
+recursion(NULL,first); //called twice as it got reversed linkedlist as input
+display(first);
+
 return 0;
 }

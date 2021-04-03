@@ -12,7 +12,7 @@ struct Node *next;
 void insert_node(int n){
 
 int ele;
-cout<<"Enter the Element 1 :";
+cout<<"Enter the Element 1: ";
 cin>>ele;
 
 struct Node *new_node,*last;
@@ -34,12 +34,27 @@ last=new_node;
 }
 
 void display(Node *f){
-cout<<"------------------------------------"<<endl;
-while(f){
-cout<<f->data<<" | ";
+while(f!=NULL){
+cout<<f->data<<" ";
 f=f->next;
 }
-cout<<endl<<"------------------------------------"<<endl;
+}
+
+void search(Node *f){
+int ele;
+cout<<endl<<"Enter the element to be earched in linkedlist"<<endl;
+cin>>ele;
+while(f){
+if(ele==f->data){
+cout<<"The element is present at :"<<f<<endl;
+break;
+}
+else{
+cout<<"The element is not present"<<endl;
+break;
+}
+f=f->next;
+}
 }
 
 
@@ -50,5 +65,6 @@ cin>>n;
 
 insert_node(n);
 display(first);
+search(first);
 return 0;
 }
