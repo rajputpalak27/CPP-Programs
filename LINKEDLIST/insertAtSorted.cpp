@@ -31,27 +31,27 @@ void insert(int n){
 }
 
 
-void insertAtLocation(int pos,int e,int n){
-    struct Node *t,*new_node;
-    t=first;
-    new_node=new Node;
-    new_node->data=e;
+void insertAtSorted(struct Node *f,int e){
+  struct Node *new_node,*q=NULL;
+  new_node=new Node;
+  new_node->data=e;
+  new_node->next=NULL;
 
-    if(pos<0 || pos>n){
-        cout<<endl<<"INDEX OUT OF SCOPE"<<endl;
-        return;
-
-    }else if(pos==0){
+  if(first==NULL){
+    first=new_node;
+  }else{
+    while(f && f->data<e){
+        q=f;
+        f=f->next;
+    }
+    if(f==first){
         new_node->next=first;
         first=new_node;
-
     }else{
-        for(int i=0;i<pos-1;i++){
-            t=t->next;
+        new_node->next=q->next;
+        q->next=new_node;
     }
-        new_node->next=t->next;
-        t->next=new_node;
-    }
+  }
 }
 
 void display(struct Node *f){
@@ -62,19 +62,18 @@ void display(struct Node *f){
 }
 
 
-
 int main(){
 
-    int n,pos,e;
+    int n,e;
     cout<<"Enter the elements you want in linked list: ";
     cin>>n;
 
     insert(n);
 
-    cout<<"Enter position and element to be inserted at that position :"<<endl;
-    cin>>pos>>e;
+    cout<<"Enter the Element :"<<endl;
+    cin>>e;
 
-    insertAtLocation(pos,e,n);
+    insertAtSorted(first,e);
 
     display(first);
 

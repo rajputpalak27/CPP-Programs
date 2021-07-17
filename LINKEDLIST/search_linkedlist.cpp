@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//PROGRAM CODE TO CREATE AND DISPLAY LINKEDLIST
+//PROGRAM CODE TO SEARCH IN LINKEDLIST
 
 struct Node{
 int data;
@@ -42,18 +42,20 @@ f=f->next;
 
 void search(Node *f){
 int ele;
-cout<<endl<<"Enter the element to be earched in linkedlist"<<endl;
+cout<<endl<<"Enter the element to be searched in linked list"<<endl;
 cin>>ele;
+int flag=0;
 while(f){
 if(ele==f->data){
 cout<<"The element is present at :"<<f<<endl;
+flag=1;
 break;
+}else{
+    f=f->next;
 }
-else{
-cout<<"The element is not present"<<endl;
-break;
 }
-f=f->next;
+if(flag==0){
+    cout<<"The element is not present"<<endl;
 }
 }
 

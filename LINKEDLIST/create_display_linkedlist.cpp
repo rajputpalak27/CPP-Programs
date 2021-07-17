@@ -33,6 +33,7 @@ last=new_node;
 
 }
 
+//DISPLAY FUNCTION
 void display(Node *f){
 cout<<"------------------------------------"<<endl;
 while(f){
@@ -42,6 +43,14 @@ f=f->next;
 cout<<endl<<"------------------------------------"<<endl;
 }
 
+//RECURSIVE FUNCTION
+void Rdisplay(Node *f){
+   if(f!=NULL){
+    cout<<f->data<<" ";
+    Rdisplay(f->next);
+
+   }
+}
 
 int main(){
 int n;
