@@ -21,7 +21,7 @@ void createTree(){
 
         parent=dequeue(&q);
 
-        cout<<"Enter the left child :";
+        cout<<"Enter the left child of "<<parent->data<<" : ";
         cin>>ele;
         if(ele!=-1){
             temp=new TreeNode;
@@ -31,7 +31,7 @@ void createTree(){
             enqueue(&q,temp);
         }
 
-        cout<<"Enter the right child :";
+        cout<<"Enter the right child of "<<parent->data<<" : ";
         cin>>ele;
         if(ele!=-1){
             temp=new TreeNode;
@@ -93,6 +93,95 @@ void levelOrder(struct TreeNode *parent){
     }
 
 }
+
+int countAllNode(struct TreeNode *parent){
+    int x,y;
+    x=y=0;
+    if(parent!=NULL){
+        x=countAllNode(parent->lchild);
+        y=countAllNode(parent->rchild);
+        return x+y+1;
+    }
+}
+
+int countInternalNode(struct TreeNode *parent)
+{
+    if(parent==NULL){
+        return 0;
+    }
+
+    if(parent->lchild || parent->rchild){
+        return countInternalNode(parent->lchild)+countInternalNode(parent->rchild)+1;
+    }
+}
+
+int count2DegreeNode(struct TreeNode *parent)
+{
+      if(parent==NULL){
+        return 0;
+    }
+
+    if(parent->lchild && parent->rchild){
+        return count2DegreeNode(parent->lchild)+count2DegreeNode(parent->rchild)+1;
+    }
+}
+
+int count1DegreeNode(struct TreeNode *parent)
+{
+      if(parent==NULL){
+        return 0;
+    }
+
+    if((parent->lchild && !parent->rchild) || (!parent->lchild && parent->rchild)){
+        return count1DegreeNode(parent->lchild)+count1DegreeNode(parent->rchild)+1;
+    }else{
+        return count1DegreeNode(parent->lchild)+count1DegreeNode(parent->rchild);
+    }
+}
+
+int countLeafNode(struct TreeNode *parent)
+{
+    if(parent==NULL){
+        return 0;
+    }
+
+    if(!parent->lchild && !parent->rchild){
+        return countLeafNode(parent->lchild)+countLeafNode(parent->rchild)+1;
+    }else{
+        return countLeafNode(parent->lchild)+countLeafNode(parent->rchild);
+    }
+}
+
+
+int height(struct TreeNode *parent){
+    int x,y;
+    x=y=0;
+    if(parent ==0){
+        return 0;
+    }else{
+        x=height(parent->lchild);
+        y=height(parent->rchild);
+
+        if(x>y){
+            return x+1;
+        }else{
+            return y+1;
+        }
+    }
+}
+
+int nodeSum(struct TreeNode *parent){
+    int x,y;
+    x=y=0;
+
+    if(parent!=NULL){
+        x=nodeSum(parent->lchild);
+        y=nodeSum(parent->rchild);
+        return x+y+parent->data;
+    }
+}
+
+
 int main(){
     createTree();
 
@@ -110,6 +199,34 @@ int main(){
 
     cout<<"LEVEL ORDER:"<<endl;
     levelOrder(root);
+    cout<<endl;
+
+    cout<<"TOTAL NODES IN TREE:"<<endl;
+    cout<<countAllNode(root);
+    cout<<endl;
+
+    cout<<"INTERNAL NODES IN TREE:"<<endl;
+    cout<<countInternalNode(root);
+    cout<<endl;
+
+    cout<<"2 DEGREE NODES IN TREE:"<<endl;
+    cout<<count2DegreeNode(root);
+    cout<<endl;
+
+    cout<<"1 DEGREE NODES IN TREE:"<<endl;
+    cout<<count1DegreeNode(root);
+    cout<<endl;
+
+    cout<<"LEAF NODES IN TREE:"<<endl;
+    cout<<countLeafNode(root);
+    cout<<endl;
+
+    cout<<"HEIGHT OF TREE:"<<endl;
+    cout<<height(root);
+    cout<<endl;
+
+    cout<<"Sum of Elements of TREE:"<<endl;
+    cout<<nodeSum(root);
     cout<<endl;
 
 
